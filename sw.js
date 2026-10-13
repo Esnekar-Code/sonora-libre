@@ -1,4 +1,4 @@
-const CACHE = 'sonora-shell-v14';
+const CACHE = 'sonora-shell-v15';
 const ASSETS = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(async cache => {
