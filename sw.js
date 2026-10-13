@@ -1,7 +1,13 @@
-const CACHE = 'sonora-shell-v5';
+const CACHE = 'sonora-shell-v6';
 const ASSETS = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE).then(async cache => {
+    for (const asset of ASSETS) {
+      const response = await fetch(asset, { cache: 'reload' });
+      if (!response.ok) throw new Error(`No se pudo precargar ${asset}`);
+      await cache.put(asset, response);
+    }
+  }).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', event => {
   event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
