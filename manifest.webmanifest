@@ -1,0 +1,1 @@
+{"name":"Sonora — música libre","short_name":"Sonora","description":"Reproductor gratis de música independiente","start_url":"./","scope":"./","display":"standalone","background_color":"#111112","theme_color":"#111112","lang":"es","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
